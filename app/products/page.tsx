@@ -39,16 +39,24 @@ async function fetchProducts(): Promise<Product[]> {
 
 function LoadingState() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 relative z-10">
+      <div className="text-center mb-12">
+        <div className="inline-block glass-effect-subtle rounded-full px-6 py-2 mb-6 animate-pulse">
+          <div className="h-4 w-16 bg-white/20 rounded" />
+        </div>
+        <div className="h-12 w-64 bg-white/10 rounded-lg mx-auto mb-4 animate-pulse" />
+        <div className="h-6 w-96 bg-white/10 rounded-lg mx-auto animate-pulse" />
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {Array.from({ length: 8 }).map((_, i) => (
-          <Card key={i} className="animate-pulse">
-            <div className="aspect-square bg-gray-200 rounded-t-lg" />
-            <CardContent className="p-4">
-              <div className="h-4 bg-gray-200 rounded mb-2" />
-              <div className="h-4 bg-gray-200 rounded w-2/3" />
-            </CardContent>
-          </Card>
+          <div key={i} className="glass-card animate-pulse">
+            <div className="aspect-square bg-white/10 rounded-t-lg" />
+            <div className="p-4">
+              <div className="h-4 bg-white/10 rounded mb-2" />
+              <div className="h-4 bg-white/10 rounded w-2/3" />
+            </div>
+          </div>
         ))}
       </div>
     </div>
@@ -59,20 +67,20 @@ async function ProductsContent() {
   const products = await fetchProducts()
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-12">
-        <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white mb-4">
-          精選商品
-        </Badge>
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+    <div className="container mx-auto px-4 py-8 relative z-10">
+      <div className="text-center mb-12 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
+        <div className="inline-block glass-effect-subtle rounded-full px-6 py-2 mb-6 liquid-shimmer">
+          <span className="text-white font-medium text-sm">✨ 精選商品</span>
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
           產品目錄
         </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">
           發現我們精心挑選的產品系列，每一件都代表著品質與設計的完美結合
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
         {products.map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
         ))}
@@ -80,7 +88,10 @@ async function ProductsContent() {
 
       {products.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">目前沒有可用的產品</p>
+          <div className="glass-card max-w-md mx-auto p-8">
+            <p className="text-white/70 text-lg">目前沒有可用的產品</p>
+            <p className="text-white/50 text-sm mt-2">請稍後再回來查看</p>
+          </div>
         </div>
       )}
     </div>
@@ -89,7 +100,13 @@ async function ProductsContent() {
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen liquid-background">
+      {/* Liquid glass orbs */}
+      <div className="absolute top-32 left-16 w-24 h-24 liquid-orb opacity-60" />
+      <div className="absolute top-64 right-24 w-32 h-32 liquid-orb opacity-40" style={{ animationDelay: '2s' }} />
+      <div className="absolute bottom-48 left-32 w-20 h-20 liquid-orb opacity-50" style={{ animationDelay: '4s' }} />
+      <div className="absolute bottom-32 right-16 w-28 h-28 liquid-orb opacity-30" style={{ animationDelay: '1s' }} />
+      
       <Suspense fallback={<LoadingState />}>
         <ProductsContent />
       </Suspense>

@@ -48,7 +48,7 @@ export function Navigation() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full glass-navigation">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -191,33 +191,36 @@ export function Navigation() {
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="liquid-background border-t border-white/10 relative">
+      {/* Floating glass orbs */}
+      <div className="absolute top-8 left-8 w-16 h-16 liquid-orb opacity-30" />
+      <div className="absolute bottom-8 right-8 w-20 h-20 liquid-orb opacity-40" style={{ animationDelay: '2s' }} />
+      <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
               VIBE
             </h3>
-            <p className="text-gray-400 mb-4">
+            <p className="text-white/70 mb-4">
               致力於為客戶提供最優質的產品和購物體驗，將創新設計與實用功能完美結合。
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">快速連結</h4>
+            <h4 className="font-semibold mb-4 text-white">快速連結</h4>
             <div className="space-y-2">
-              <Link href="/products" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/products" className="block text-white/60 hover:text-white transition-colors">
                 商品目錄
               </Link>
-              <Link href="/about" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/about" className="block text-white/60 hover:text-white transition-colors">
                 關於我們
               </Link>
-              <Link href="/contact" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/contact" className="block text-white/60 hover:text-white transition-colors">
                 聯絡我們
               </Link>
-              <Link href="/support" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/support" className="block text-white/60 hover:text-white transition-colors">
                 客戶支援
               </Link>
             </div>
@@ -225,18 +228,18 @@ export function Footer() {
 
           {/* Customer Service */}
           <div>
-            <h4 className="font-semibold mb-4">客戶服務</h4>
+            <h4 className="font-semibold mb-4 text-white">客戶服務</h4>
             <div className="space-y-2">
-              <Link href="/account" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/account" className="block text-white/60 hover:text-white transition-colors">
                 我的帳戶
               </Link>
-              <Link href="/cart" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/cart" className="block text-white/60 hover:text-white transition-colors">
                 購物車
               </Link>
-              <Link href="/checkout" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/checkout" className="block text-white/60 hover:text-white transition-colors">
                 結帳
               </Link>
-              <Link href="/search" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/search" className="block text-white/60 hover:text-white transition-colors">
                 商品搜尋
               </Link>
             </div>
@@ -244,8 +247,8 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold mb-4">聯絡資訊</h4>
-            <div className="space-y-2 text-gray-400">
+            <h4 className="font-semibold mb-4 text-white">聯絡資訊</h4>
+            <div className="space-y-2 text-white/60">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
                 <span>+886-2-1234-5678</span>
@@ -259,20 +262,20 @@ export function Footer() {
           </div>
         </div>
 
-        <hr className="my-8 border-gray-800" />
+        <hr className="my-8 border-white/20" />
 
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-white/60 text-sm">
             © 2024 VIBE. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <Link href="#" className="text-white/60 hover:text-white text-sm transition-colors">
               隱私政策
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <Link href="#" className="text-white/60 hover:text-white text-sm transition-colors">
               服務條款
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <Link href="#" className="text-white/60 hover:text-white text-sm transition-colors">
               Cookie 政策
             </Link>
           </div>

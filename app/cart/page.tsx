@@ -66,14 +66,16 @@ export default function CartPage() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center py-16">
-            <ShoppingBag className="mx-auto h-24 w-24 text-gray-300 mb-6" />
-            <h1 className="text-3xl font-bold mb-4 text-gray-900">購物車是空的</h1>
-            <p className="text-gray-600 mb-8">開始購物，將喜歡的商品加入購物車吧！</p>
+      <div className="min-h-screen liquid-background">
+        <div className="absolute top-32 left-16 w-24 h-24 liquid-orb opacity-60" />
+        <div className="absolute bottom-32 right-16 w-32 h-32 liquid-orb opacity-40" style={{ animationDelay: '1s' }} />
+        <div className="container mx-auto px-4 py-8 relative z-10">
+          <div className="text-center py-16 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
+            <ShoppingBag className="mx-auto h-24 w-24 text-white/50 mb-6" />
+            <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">購物車是空的</h1>
+            <p className="text-white/70 mb-8">開始購物，將喜歡的商品加入購物車吧！</p>
             <Link href="/products">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600">
+              <Button size="lg" className="glass-button glass-interactive bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-none shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105">
                 開始購物
               </Button>
             </Link>
@@ -84,8 +86,11 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen liquid-background">
+      <div className="absolute top-24 left-12 w-28 h-28 liquid-orb opacity-50" />
+      <div className="absolute top-48 right-20 w-36 h-36 liquid-orb opacity-40" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute bottom-48 left-24 w-24 h-24 liquid-orb opacity-60" style={{ animationDelay: '3s' }} />
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Header */}
         <div className="mb-8">
           <Link href="/products">
