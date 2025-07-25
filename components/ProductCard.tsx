@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { ShoppingCart, Eye } from "lucide-react";
 
 interface Product {
   id: number;
@@ -22,7 +24,12 @@ export function ProductCard({ product, index }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const formatPrice = (cents: number): string => {
-    return `$${(cents / 100).toFixed(2)}`;
+    return `NT$ ${(cents / 100).toLocaleString()}`;
+  };
+
+  const handleAddToCart = () => {
+    // In a real app, this would add to cart context/state
+    alert(`已將 "${product.name}" 加入購物車！`);
   };
 
   return (
@@ -67,23 +74,39 @@ export function ProductCard({ product, index }: ProductCardProps) {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
           <div className="relative z-10">
-            <h3 className="text-white font-semibold mb-2 group-hover:text-blue-300 transition-colors duration-300 line-clamp-2">
-              {product.name}
-            </h3>
+            <Link href={`/products/${product.id}`}>
+              <h3 className="text-white font-semibold mb-2 group-hover:text-blue-300 transition-colors duration-300 line-clamp-2 cursor-pointer hover:underline">
+                {product.name}
+              </h3>
+            </Link>
             
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 {formatPrice(product.price_in_cents)}
               </span>
-              
+            </div>
+            
+            <div className="flex gap-2">
               <Button 
                 size="sm" 
-                className="relative bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-none shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 overflow-hidden"
+                onClick={handleAddToCart}
+                className="flex-1 relative bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-none shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 overflow-hidden"
               >
                 {/* Button glass overlay */}
                 <div className="absolute inset-0 bg-white/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative z-10">Add to Cart</span>
+                <ShoppingCart className="mr-1 h-4 w-4 relative z-10" />
+                <span className="relative z-10">加入購物車</span>
               </Button>
+              
+              <Link href={`/products/${product.id}`}>
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  className="relative text-white border-white/30 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                >
+                  <Eye className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

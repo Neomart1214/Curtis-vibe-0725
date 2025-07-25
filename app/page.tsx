@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProductCard } from "@/components/ProductCard";
@@ -84,12 +85,16 @@ export default function Home() {
           </div>
           
           <div className="flex justify-center gap-4 mb-16 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
-            <Button className="bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
-              Explore Collection
-            </Button>
-            <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-105">
-              Learn More
-            </Button>
+            <Link href="/products">
+              <Button className="bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
+                探索商品
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-105">
+                了解更多
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -116,9 +121,9 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-white mb-4">VIBE</h3>
             <p className="text-white/60 mb-6">Future-forward design meets seamless functionality</p>
             <div className="flex justify-center space-x-6 text-white/60">
-              <a href="#" className="hover:text-white transition-colors duration-300">About</a>
-              <a href="#" className="hover:text-white transition-colors duration-300">Contact</a>
-              <a href="#" className="hover:text-white transition-colors duration-300">Support</a>
+              <Link href="/about" className="hover:text-white transition-colors duration-300">關於我們</Link>
+              <Link href="/contact" className="hover:text-white transition-colors duration-300">聯絡我們</Link>
+              <Link href="/support" className="hover:text-white transition-colors duration-300">客戶支援</Link>
             </div>
             <div className="mt-8 pt-8 border-t border-white/10 text-white/40 text-sm">
               © 2024 VIBE. All rights reserved.
