@@ -3,6 +3,8 @@ import { Suspense } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ProductCard } from '@/components/ProductCard'
+import { promises as fs } from 'fs'
+import path from 'path'
 
 export const metadata: Metadata = {
   title: '產品目錄 | VIBE',
@@ -23,13 +25,16 @@ interface Product {
 }
 
 async function fetchProducts(): Promise<Product[]> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/products`, {
-    cache: 'no-store'
-  })
-  if (!response.ok) {
+  try {
+    // 直接讀取 public/products.json 文件，而不是通過 API 調用
+    const jsonPath = path.join(process.cwd(), 'public', 'products.json')
+    const fileContents = await fs.readFile(jsonPath, 'utf8')
+    const products = JSON.parse(fileContents)
+    return products
+  } catch (error) {
+    console.error('Failed to load products:', error)
     throw new Error('Failed to fetch products')
   }
-  return response.json()
 }
 
 function LoadingState() {
